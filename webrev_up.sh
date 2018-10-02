@@ -38,9 +38,7 @@ function get_remote_webrev_name() {
   local existing_webrevs
   existing_webrevs="$(sftp -q "$webrev_host:$bugID" <<< "ls -1")"
   readonly existing_webrevs
-  local last_webrev
-  last_webrev="$(tail -n 1 - <<< "$existing_webrevs")"
-  readonly last_webrev
+  local -r last_webrev="${existing_webrevs##*$'\n'}"
   local rev="00"
   if [[ "$last_webrev" =~ ^webrev\.([0-9][0-9])$ ]]; then
     rev=$((${BASH_REMATCH[1]} + 1))
