@@ -2,6 +2,10 @@
 #
 # Create a webrev in a temporary directory and upload it to cr.openjdk.java.net.
 # The webrev is automatically named in the "<BugID>/webrev.XX" format.
+# This script is suitable for users of "hg commit --amend" and "hg rebase"
+# for working with OpenJDK upstream sources. It may not work for users of
+# MqExtension.
+#
 # Prerequisites:
 #   1. Current directory is root of mercurial repository.
 #   2. The tip is the commit containing changes for the webrev.
@@ -66,6 +70,11 @@ function main() {
   repo_url="$(hg paths default)"
   readonly repo_url
 
+  # webrev.ksh does not handle mercurial branches well.
+  # For webrev.ksh to create comments correctly under mercurial branches, user
+  # needs to comment out "elif [[ -n $FIRST_CREV ]]" block in
+  # comments_from_mercurial(), so it always runs the
+  # "hg log -l1 --removed --template ..." command.
   env WNAME="JDK-$bugID" ksh "$WEBREV" -m -N -r 'p1(-1)' -c "$bugID" -p "$repo_url" -o "$outdir"
   chmod -R a+rX "$outdir"
 
