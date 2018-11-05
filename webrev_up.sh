@@ -66,7 +66,7 @@ function main() {
   repo_url="$(hg paths default)"
   readonly repo_url
 
-  env WNAME="JDK-$bugID" ksh "$WEBREV" -m -N -r -2 -c "$bugID" -p "$repo_url" -o "$outdir"
+  env WNAME="JDK-$bugID" ksh "$WEBREV" -m -N -r 'p1(-1)' -c "$bugID" -p "$repo_url" -o "$outdir"
   chmod -R a+rX "$outdir"
 
   local -r webrev_host="$USERNAME@$PUBHOST"
