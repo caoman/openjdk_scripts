@@ -10,6 +10,12 @@
 #   1. Current directory is root of mercurial repository.
 #   2. The tip is the commit containing changes for the webrev.
 #   3. The tip commit's description starts with "BugID:".
+#
+# Arguments:
+#   -N:   Pass "-N -r 'p1(-1)'" to webrev script. This works with local Mercurial
+#         branches and pending changes in working directory, but will create a
+#         .patch file instead of .changeset file.
+#
 
 set -euo pipefail
 
@@ -56,6 +62,14 @@ function get_remote_webrev_name() {
 
 
 function main() {
+  local webrev_N=0
+  while [[ "$#" -gt 0 ]]; do
+    opt="$1"; shift;
+    case "$opt" in
+      -N) webrev_N=1 ;;
+    esac
+  done
+
   # 'local -r var=$(foo)' will ignore 'set -e' if foo fails.
   # We need to split it into three statements.
   local bugID
@@ -70,12 +84,17 @@ function main() {
   repo_url="$(hg paths default)"
   readonly repo_url
 
+  # For -N and local mercurial branches:
   # webrev.ksh does not handle mercurial branches well.
   # For webrev.ksh to create comments correctly under mercurial branches, user
   # needs to comment out "elif [[ -n $FIRST_CREV ]]" block in
   # comments_from_mercurial(), so it always runs the
   # "hg log -l1 --removed --template ..." command.
-  env WNAME="JDK-$bugID" ksh "$WEBREV" -m -N -r 'p1(-1)' -c "$bugID" -p "$repo_url" -o "$outdir"
+  local -a webrev_args
+  if ((webrev_N)); then
+    webrev_args+=('-N' '-r' 'p1(-1)')
+  fi
+  env WNAME="JDK-$bugID" ksh "$WEBREV" -m "${webrev_args[@]}" -c "$bugID" -p "$repo_url" -o "$outdir"
   chmod -R a+rX "$outdir"
 
   local -r webrev_host="$USERNAME@$PUBHOST"
