@@ -50,11 +50,14 @@ function get_remote_webrev_name() {
   readonly existing_webrevs
   local -r last_webrev="${existing_webrevs##*$'\n'}"
   local rev="00"
-  if [[ "$last_webrev" =~ ^webrev\.([0-9][0-9])$ ]]; then
+  if [[ "$last_webrev" =~ ^webrev[.]([0-9][0-9])$ ]]; then
     rev=$((${BASH_REMATCH[1]} + 1))
     rev="$(printf '%02d' "$rev")"
+  elif [[ "$last_webrev" =~ ^webrev[.].+$ ]]; then
+    # Generate a random suffix as rev, if last_webrev does not end in 00-99.
+    rev="$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 4 | head -n 1)"
   fi
-  if [[ -n "$(grep "^webrev.$rev$" - <<< "$existing_webrevs")" ]]; then
+  if [[ -n "$(grep "^webrev[.]$rev$" - <<< "$existing_webrevs")" ]]; then
     die "'webrev.$rev' already exists in '$existing_webrevs'"
   fi
   echo "webrev.$rev"
