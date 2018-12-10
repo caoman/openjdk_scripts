@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdtprojectproperties>
+<section name="org.eclipse.cdt.internal.ui.wizards.settingswizards.IncludePaths">
+<language name="C++ Source File">
+<includepath workspace_path="true">/${ProjName}/hotspot/cpu/x86</includepath>
+<includepath workspace_path="true">/${ProjName}/hotspot/os/linux</includepath>
+<includepath workspace_path="true">/${ProjName}/hotspot/os/posix</includepath>
+<includepath workspace_path="true">/${ProjName}/hotspot/os/posix/include</includepath>
+<includepath workspace_path="true">/${ProjName}/hotspot/os_cpu/linux_x86</includepath>
+<includepath workspace_path="true">/${ProjName}/hotspot/share/include</includepath>
+<includepath workspace_path="true">/${ProjName}/hotspot/share/precompiled</includepath>
+<includepath workspace_path="true">/${ProjName}/hotspot/share</includepath>
+<includepath>/usr/local/google/home/manc/workspace/jdkHEADgensrc</includepath>
+<includepath>/usr/local/google/home/manc/workspace/jdkHEADgensrc/linux</includepath>
+
+</language>
+<language name="C Source File">
+<includepath workspace_path="true">/${ProjName}/hotspot/cpu/x86</includepath>
+<includepath workspace_path="true">/${ProjName}/hotspot/os/linux</includepath>
+<includepath workspace_path="true">/${ProjName}/hotspot/os/posix</includepath>
+<includepath workspace_path="true">/${ProjName}/hotspot/os/posix/include</includepath>
+<includepath workspace_path="true">/${ProjName}/hotspot/os_cpu/linux_x86</includepath>
+<includepath workspace_path="true">/${ProjName}/hotspot/share/include</includepath>
+<includepath workspace_path="true">/${ProjName}/hotspot/share/precompiled</includepath>
+<includepath workspace_path="true">/${ProjName}/hotspot/share</includepath>
+<includepath>/usr/local/google/home/manc/workspace/jdkHEADgensrc</includepath>
+<includepath>/usr/local/google/home/manc/workspace/jdkHEADgensrc/linux</includepath>
+
+</language>
+<language name="Object File">
+
+</language>
+<language name="Assembly Source File">
+<includepath workspace_path="true">/${ProjName}/hotspot/cpu/x86</includepath>
+<includepath workspace_path="true">/${ProjName}/hotspot/os/linux</includepath>
+<includepath workspace_path="true">/${ProjName}/hotspot/os/posix</includepath>
+<includepath workspace_path="true">/${ProjName}/hotspot/os/posix/include</includepath>
+<includepath workspace_path="true">/${ProjName}/hotspot/os_cpu/linux_x86</includepath>
+<includepath workspace_path="true">/${ProjName}/hotspot/share/include</includepath>
+<includepath workspace_path="true">/${ProjName}/hotspot/share/precompiled</includepath>
+<includepath workspace_path="true">/${ProjName}/hotspot/share</includepath>
+<includepath>/usr/local/google/home/manc/workspace/jdkHEADgensrc</includepath>
+<includepath>/usr/local/google/home/manc/workspace/jdkHEADgensrc/linux</includepath>
+
+</language>
+</section>
+<section name="org.eclipse.cdt.internal.ui.wizards.settingswizards.Macros">
+<language name="C++ Source File">
+<macro>
+<name>TARGET_COMPILER_gcc</name><value/>
+</macro>
+<macro>
+<name>__LP64</name><value/>
+</macro>
+<macro>
+<name>TARGET_ARCH_x86</name><value/>
+</macro>
+<macro>
+<name>LINUX</name><value/>
+</macro>
+<macro>
+<name>INCLUDE_ALL_GCS</name><value>1</value>
+</macro>
+<macro>
+<name>COMPILER1</name><value/>
+</macro>
+<macro>
+<name>COMPILER2</name><value/>
+</macro>
+<macro>
+<name>TARGET_OS_FAMILY_linux</name><value/>
+</macro>
+<macro>
+<name>TARGET_OS_ARCH_linux_x86</name><value/>
+</macro>
+<macro>
+<name>TARGET_ARCH_MODEL_x86_64</name><value/>
+</macro>
+<macro>
+<name>ASSERT</name><value/>
+</macro>
+<macro>
+<name>INCLUDE_SUFFIX_CPU</name><value>_x86</value>
+</macro>
+<macro>
+<name>INCLUDE_SUFFIX_OS</name><value>_linux</value>
+</macro>
+<macro>
+<name>AMD64</name><value/>
+</macro>
+<macro>
+<name>INCLUDE_SUFFIX_COMPILER</name><value>_gcc</value>
+</macro>
+
+</language>
+<language name="C Source File">
+<macro>
+<name>TARGET_COMPILER_gcc</name><value/>
+</macro>
+<macro>
+<name>__LP64</name><value/>
+</macro>
+<macro>
+<name>TARGET_ARCH_x86</name><value/>
+</macro>
+<macro>
+<name>LINUX</name><value/>
+</macro>
+<macro>
+<name>INCLUDE_ALL_GCS</name><value>1</value>
+</macro>
+<macro>
+<name>COMPILER1</name><value/>
+</macro>
+<macro>
+<name>COMPILER2</name><value/>
+</macro>
+<macro>
+<name>TARGET_OS_FAMILY_linux</name><value/>
+</macro>
+<macro>
+<name>TARGET_OS_ARCH_linux_x86</name><value/>
+</macro>
+<macro>
+<name>TARGET_ARCH_MODEL_x86_64</name><value/>
+</macro>
+<macro>
+<name>ASSERT</name><value/>
+</macro>
+<macro>
+<name>INCLUDE_SUFFIX_CPU</name><value>_x86</value>
+</macro>
+<macro>
+<name>INCLUDE_SUFFIX_OS</name><value>_linux</value>
+</macro>
+<macro>
+<name>AMD64</name><value/>
+</macro>
+<macro>
+<name>INCLUDE_SUFFIX_COMPILER</name><value>_gcc</value>
+</macro>
+
+</language>
+<language name="Object File">
+
+</language>
+<language name="Assembly Source File">
+
+</language>
+</section>
+</cdtprojectproperties>
