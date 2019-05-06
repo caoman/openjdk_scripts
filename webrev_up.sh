@@ -16,6 +16,9 @@
 #         branches and pending changes in working directory, but will create a
 #         .patch file instead of .changeset file.
 #
+#   -D <name>: Does not check or extract bug ID from commit message, but put
+#              webrevs in directory with <name> on remote host.
+#
 
 set -euo pipefail
 
@@ -36,17 +39,17 @@ function get_bugID() {
 }
 
 function get_remote_webrev_name() {
-  local -r bugID="$1"
+  local -r remote_dir="$1"
   local -r webrev_host="$2"
   local root_content
   root_content="$(sftp -q "$webrev_host" <<< "ls -1")"
   readonly root_content
-  # Creates $bugID directory if it doesn't exist
-  if [[ -z "$(grep "^$bugID$" - <<< "$root_content")" ]]; then
-    sftp -q "$webrev_host" <<< "mkdir $bugID" &> /dev/null
+  # Creates $remote_dir directory if it doesn't exist
+  if [[ -z "$(grep "^$remote_dir$" - <<< "$root_content")" ]]; then
+    sftp -q "$webrev_host" <<< "mkdir $remote_dir" &> /dev/null
   fi
   local existing_webrevs
-  existing_webrevs="$(sftp -q "$webrev_host:$bugID" <<< "ls -1")"
+  existing_webrevs="$(sftp -q "$webrev_host:$remote_dir" <<< "ls -1")"
   readonly existing_webrevs
   local -r last_webrev="${existing_webrevs##*$'\n'}"
   local rev="00"
@@ -66,21 +69,31 @@ function get_remote_webrev_name() {
 
 function main() {
   local webrev_N=0
+  local dir_arg=""
   while [[ "$#" -gt 0 ]]; do
     opt="$1"; shift;
     case "$opt" in
       -N) webrev_N=1 ;;
+      -D) dir_arg="$1" ;;
     esac
   done
 
   # 'local -r var=$(foo)' will ignore 'set -e' if foo fails.
   # We need to split it into three statements.
-  local bugID
-  bugID="$(get_bugID)"
+  local remote_dir
+  local bugID=""
+
+  if [[ -z "$dir_arg" ]]; then
+    bugID="$(get_bugID)"
+    remote_dir="$bugID"
+  else
+    remote_dir="$dir_arg"
+  fi
   readonly bugID
+  readonly remote_dir
 
   local outdir
-  outdir="$(mktemp -d -p /tmp "webrev${bugID}_XXXX")"
+  outdir="$(mktemp -d -p /tmp "webrev${remote_dir}_XXXX")"
   readonly outdir
 
   local repo_url
@@ -97,16 +110,22 @@ function main() {
   if ((webrev_N)); then
     webrev_args+=('-N' '-r' 'p1(-1)')
   fi
-  env WNAME="JDK-$bugID" ksh "$WEBREV" -m "${webrev_args[@]}" -c "$bugID" -p "$repo_url" -o "$outdir"
+  if [[ -n "$bugID" ]]; then
+    webrev_args+=('-c' "$bugID")
+  fi
+
+  ksh "$WEBREV" -m "${webrev_args[@]}" -p "$repo_url" -o "$outdir"
   chmod -R a+rX "$outdir"
 
   local -r webrev_host="$USERNAME@$PUBHOST"
   local webrev_name
-  webrev_name="$(get_remote_webrev_name "$bugID" "$webrev_host")"
+  webrev_name="$(get_remote_webrev_name "$remote_dir" "$webrev_host")"
   readonly webrev_name
-  rsync --chmod=a+rX -av "$outdir/webrev/" "$webrev_host:$bugID/$webrev_name/"
-  echo "Webrev: https://cr.openjdk.java.net/~$USERNAME/$bugID/$webrev_name/"
-  echo "Bug: https://bugs.openjdk.java.net/browse/JDK-$bugID"
+  rsync --chmod=a+rX -av "$outdir/webrev/" "$webrev_host:$remote_dir/$webrev_name/"
+  echo "Webrev: https://cr.openjdk.java.net/~$USERNAME/$remote_dir/$webrev_name/"
+  if [[ -n "$bugID" ]]; then
+    echo "Bug: https://bugs.openjdk.java.net/browse/JDK-$bugID"
+  fi
 }
 
 main "$@"
