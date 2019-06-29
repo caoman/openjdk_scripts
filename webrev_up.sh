@@ -12,9 +12,8 @@
 #   3. The tip commit's description starts with "BugID:".
 #
 # Arguments:
-#   -N:   Pass "-N -r 'p1(-1)'" to webrev script. This works with local Mercurial
-#         branches and pending changes in working directory, but will create a
-#         .patch file instead of .changeset file.
+#   -N:   Pass "-N" to webrev script. This works with pending uncommitted
+#         changes but will create a .patch file instead of .changeset file.
 #
 #   -D <name>: Does not check or extract bug ID from commit message, but put
 #              webrevs in directory with <name> on remote host.
@@ -108,7 +107,7 @@ function main() {
   # "hg log -l1 --removed --template ..." command.
   local -a webrev_args
   if ((webrev_N)); then
-    webrev_args+=('-N' '-r' 'p1(-1)')
+    webrev_args+=('-N')
   fi
   if [[ -n "$bugID" ]]; then
     webrev_args+=('-c' "$bugID")
