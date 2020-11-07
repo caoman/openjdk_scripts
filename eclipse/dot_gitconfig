@@ -1,0 +1,20 @@
+[user]
+	name = Man Cao
+	email = manc@google.com
+[core]
+	editor = vim
+	excludesFile = ~/.gitignore
+[merge]
+	tool = meld
+[diff]
+	tool = meld
+[difftool]
+	prompt = false
+[difftool "meld"]
+	cmd = meld "$LOCAL" "$REMOTE"
+[alias]
+	glog = log --graph --oneline
+	co = checkout
+[include]
+	path = /home/manc/ws/skara/skara.gitconfig
+
