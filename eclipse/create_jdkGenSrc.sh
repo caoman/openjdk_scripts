@@ -3,7 +3,7 @@
 set -euo pipefail
 
 TARGET_DIR="$HOME"/workspace/jdkHEADgensrc
-JDK_BUILD_DIR="$HOME"/ws/jdkHeadOpenBuildFastdebug
+JDK_BUILD_DIR=$(pwd)
 
 if [[ ! -d "$TARGET_DIR" ]]; then
   mkdir -p "$TARGET_DIR"
