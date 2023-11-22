@@ -10,8 +10,8 @@
       <includepath workspace_path="true">/${ProjName}/src/hotspot/share/include</includepath>
       <includepath workspace_path="true">/${ProjName}/src/hotspot/share/precompiled</includepath>
       <includepath workspace_path="true">/${ProjName}/src/hotspot/share</includepath>
-      <includepath>/usr/local/google/home/manc/workspace/jdkHEADgensrc</includepath>
-      <includepath>/usr/local/google/home/manc/workspace/jdkHEADgensrc/linux</includepath>
+      <includepath>/usr/local/google/home/manc/workspace/jdk21Ugensrc</includepath>
+      <includepath>/usr/local/google/home/manc/workspace/jdk21Ugensrc/linux</includepath>
     </language>
     <language id="org.eclipse.cdt.core.gcc" name="C Source File">
       <includepath workspace_path="true">/${ProjName}/src/hotspot/cpu/x86</includepath>
@@ -22,8 +22,8 @@
       <includepath workspace_path="true">/${ProjName}/src/hotspot/share/include</includepath>
       <includepath workspace_path="true">/${ProjName}/src/hotspot/share/precompiled</includepath>
       <includepath workspace_path="true">/${ProjName}/src/hotspot/share</includepath>
-      <includepath>/usr/local/google/home/manc/workspace/jdkHEADgensrc</includepath>
-      <includepath>/usr/local/google/home/manc/workspace/jdkHEADgensrc/linux</includepath>
+      <includepath>/usr/local/google/home/manc/workspace/jdk21Ugensrc</includepath>
+      <includepath>/usr/local/google/home/manc/workspace/jdk21Ugensrc/linux</includepath>
     </language>
     <language name="Object File"/>
     <language id="org.eclipse.cdt.core.assembly" name="Assembly Source File">
@@ -35,8 +35,8 @@
       <includepath workspace_path="true">/${ProjName}/src/hotspot/share/include</includepath>
       <includepath workspace_path="true">/${ProjName}/src/hotspot/share/precompiled</includepath>
       <includepath workspace_path="true">/${ProjName}/src/hotspot/share</includepath>
-      <includepath>/usr/local/google/home/manc/workspace/jdkHEADgensrc</includepath>
-      <includepath>/usr/local/google/home/manc/workspace/jdkHEADgensrc/linux</includepath>
+      <includepath>/usr/local/google/home/manc/workspace/jdk21Ugensrc</includepath>
+      <includepath>/usr/local/google/home/manc/workspace/jdk21Ugensrc/linux</includepath>
     </language>
   </section>
   <section name="org.eclipse.cdt.internal.ui.wizards.settingswizards.Macros">
